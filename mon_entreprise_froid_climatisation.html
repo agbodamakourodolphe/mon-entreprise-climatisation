@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mon Entreprise : services de froid, climatisation, installation, entretien et dépannage frigorifique.">
+  <title>Mon Entreprise | Froid & Climatisation</title>
+  <style>
+    :root {
+      --navy: #082f49;
+      --blue: #087eae;
+      --cyan: #39c6e8;
+      --ice: #eef8fc;
+      --text: #183448;
+      --white: #fff;
+      --muted: #5e7180;
+      --shadow: 0 12px 32px rgba(8, 47, 73, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #f7fbfd;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 8px 5%;
+      font-size: .9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    header {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 5%;
+      box-shadow: 0 3px 15px rgba(8,47,73,.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: grid; place-items: center;
+      color: white; background: linear-gradient(135deg, var(--blue), var(--navy));
+      font-size: 1.7rem;
+    }
+    .brand strong { display: block; color: var(--navy); font-size: 1.05rem; line-height: 1.2; }
+    .brand small { color: var(--muted); }
+    nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    nav a { text-decoration: none; font-weight: 700; font-size: .95rem; }
+    nav a:hover { color: var(--blue); }
+    .nav-contact, .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      gap: 8px; border: 0; border-radius: 9px; padding: 12px 18px;
+      background: var(--blue); color: white; text-decoration: none;
+      font-weight: 700; cursor: pointer;
+    }
+    .nav-contact:hover, .btn:hover { background: var(--navy); }
+    .hero {
+      padding: 78px 5%;
+      background: linear-gradient(115deg, rgba(5,42,67,.96), rgba(8,126,174,.88)),
+                  radial-gradient(circle at 80% 25%, #39c6e8, #082f49);
+      color: white;
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      align-items: center; gap: 45px;
+    }
+    .eyebrow {
+      display: inline-block; background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.25); padding: 6px 12px;
+      border-radius: 999px; font-size: .88rem; font-weight: 700;
+    }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; margin: 18px 0; }
+    .hero p { max-width: 620px; font-size: 1.1rem; color: #e7f6fc; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn-light { background: white; color: var(--navy); }
+    .btn-light:hover { background: var(--ice); }
+    .hero-card {
+      min-height: 300px; border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10); border-radius: 24px;
+      display: grid; place-items: center; text-align: center; padding: 28px;
+      backdrop-filter: blur(4px);
+    }
+    .snowflake { font-size: 6rem; line-height: 1; }
+    .hero-card h2 { margin: 18px 0 5px; font-size: 1.6rem; }
+    .hero-card p { margin: 0; font-size: 1rem; }
+    section { padding: 68px 5%; scroll-margin-top: 100px; }
+    .section-heading { text-align: center; max-width: 720px; margin: 0 auto 35px; }
+    .section-heading .kicker { color: var(--blue); text-transform: uppercase; letter-spacing: 1.5px; font-size: .8rem; font-weight: 800; }
+    .section-heading h2 { color: var(--navy); font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 8px 0 10px; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .service-card {
+      background: white; padding: 27px; border-radius: 17px;
+      box-shadow: var(--shadow); border: 1px solid #e4eff4;
+    }
+    .service-icon {
+      width: 58px; height: 58px; display: grid; place-items: center;
+      background: var(--ice); border-radius: 16px; font-size: 1.8rem;
+    }
+    .service-card h3 { color: var(--navy); margin: 18px 0 8px; }
+    .service-card p { color: var(--muted); margin: 0; }
+    .about { background: var(--ice); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .about-panel {
+      min-height: 270px; background: linear-gradient(135deg, #087eae, #082f49);
+      color: white; border-radius: 22px; display: grid; place-items: center;
+      text-align: center; padding: 28px;
+    }
+    .about-panel .big-icon { font-size: 5rem; }
+    .about h2 { color: var(--navy); font-size: 2rem; line-height: 1.2; }
+    .about p { color: var(--muted); }
+    .checks { list-style: none; padding: 0; }
+    .checks li { margin: 10px 0; }
+    .checks li::before { content: "✓"; color: var(--blue); font-weight: 900; margin-right: 10px; }
+    .contact-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: stretch; }
+    .contact-info, .contact-form { background: white; border-radius: 18px; padding: 28px; box-shadow: var(--shadow); border: 1px solid #e4eff4; }
+    .contact-info h3, .contact-form h3 { color: var(--navy); margin-top: 0; }
+    .contact-item { margin: 20px 0; overflow-wrap: anywhere; }
+    .contact-item strong { display: block; color: var(--navy); }
+    .contact-item a { color: var(--blue); }
+    label { display: block; font-weight: 700; margin: 13px 0 6px; }
+    input, textarea {
+      width: 100%; padding: 12px 13px; border: 1px solid #cbdce5;
+      border-radius: 8px; font: inherit; color: var(--text); background: #fbfdfe;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: .85rem; }
+    footer { background: var(--navy); color: white; padding: 28px 5%; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    footer p { margin: 5px 0; color: #d9eaf2; }
+    footer a { color: white; }
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 20;
+      background: #1fa855; color: white; text-decoration: none;
+      border-radius: 999px; padding: 13px 17px; font-weight: 800;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+    @media (max-width: 850px) {
+      header { align-items: flex-start; flex-direction: column; }
+      nav { gap: 13px; }
+      .hero, .about, .contact-wrap { grid-template-columns: 1fr; }
+      .hero { padding-top: 55px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .topbar { display: block; text-align: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      section { padding: 48px 5%; }
+      .hero { padding: 48px 5%; }
+      .hero-card { min-height: 220px; }
+      .nav-contact { padding: 9px 12px; }
+      .whatsapp-float { right: 12px; bottom: 12px; padding: 11px 13px; font-size: .9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span>❄️ Froid & Climatisation — Installation, entretien et dépannage</span>
+    <span>✉️ agbodamakourodolphe@gmail.com</span>
+  </div>
+
+  <header>
+    <a class="brand" href="#accueil" aria-label="Mon Entreprise, accueil">
+      <span class="brand-icon">❄</span>
+      <span><strong>MON ENTREPRISE</strong><small>Froid & Climatisation</small></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-contact" href="#contact">Demander un devis</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div>
+        <span class="eyebrow">VOTRE CONFORT, NOTRE PRIORITÉ</span>
+        <h1>Des solutions fiables en froid et climatisation</h1>
+        <p>Installation, entretien et dépannage de systèmes de climatisation et d'équipements frigorifiques. Contactez-nous pour discuter de votre besoin.</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#services">Découvrir nos services</a>
+          <a class="btn" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div>
+          <div class="snowflake">❄️</div>
+          <h2>Froid • Climatisation • Maintenance</h2>
+          <p>Des services adaptés à vos besoins.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-heading">
+        <span class="kicker">Nos compétences</span>
+        <h2>Nos services</h2>
+        <p>Un accompagnement pour l'installation et le bon fonctionnement de vos équipements.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">❄️</div>
+          <h3>Installation de climatiseurs</h3>
+          <p>Installation et mise en service de systèmes de climatisation adaptés à votre espace.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🧰</div>
+          <h3>Entretien et maintenance</h3>
+          <p>Entretien régulier pour contribuer au bon fonctionnement et à la durabilité des appareils.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Dépannage frigorifique</h3>
+          <p>Recherche de pannes et assistance pour les équipements de froid et de climatisation.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Froid domestique</h3>
+          <p>Services autour des réfrigérateurs et autres équipements frigorifiques domestiques.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🌡️</div>
+          <h3>Conseils techniques</h3>
+          <p>Orientation sur l'utilisation et l'entretien de vos équipements.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">📋</div>
+          <h3>Étude de vos besoins</h3>
+          <p>Échange sur votre projet afin d'identifier une solution appropriée.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="apropos">
+      <div class="about-panel">
+        <div>
+          <div class="big-icon">🧊</div>
+          <h2>Mon Entreprise</h2>
+          <p>Froid et climatisation</p>
+        </div>
+      </div>
+      <div>
+        <span class="kicker">À propos</span>
+        <h2>Votre partenaire pour le confort thermique</h2>
+        <p>Mon Entreprise présente des services en froid et climatisation : installation, entretien, maintenance et dépannage. Contactez-nous pour décrire votre besoin et convenir des prochaines étapes.</p>
+        <ul class="checks">
+          <li>Services en froid et climatisation</li>
+          <li>Contact direct par téléphone ou email</li>
+          <li>Demande de renseignements et de devis</li>
+        </ul>
+        <a class="btn" href="#contact">Parlons de votre projet</a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-heading">
+        <span class="kicker">Parlons de votre projet</span>
+        <h2>Contactez-nous</h2>
+        <p>Appelez-nous ou envoyez un email pour toute demande d'information.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <h3>Nos coordonnées</h3>
+          <div class="contact-item">
+            <strong>📧 Adresse email</strong>
+            <a href="mailto:agbodamakourodolphe@gmail.com">agbodamakourodolphe@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>📞 Téléphone</strong>
+            <a href="tel:+2290145782993">0145782993</a>
+            <p class="form-note">Vérifie que ce numéro est bien celui que tu souhaites afficher publiquement avant de publier le site.</p>
+          </div>
+          <div class="contact-item">
+            <strong>🛠️ Domaine</strong>
+            <span>Froid, climatisation et maintenance frigorifique</span>
+          </div>
+          <a class="btn" href="mailto:agbodamakourodolphe@gmail.com?subject=Demande%20de%20renseignements">Envoyer un email</a>
+        </div>
+        <div class="contact-form">
+          <h3>Préparer une demande</h3>
+          <form id="contactForm">
+            <label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" placeholder="Votre nom" required>
+            <label for="email">Votre email (facultatif)</label>
+            <input id="email" name="email" type="email" placeholder="vous@exemple.com">
+            <label for="service">Service souhaité</label>
+            <select id="service" name="service" style="width:100%;padding:12px;border:1px solid #cbdce5;border-radius:8px;font:inherit;background:#fbfdfe">
+              <option>Installation de climatisation</option>
+              <option>Entretien et maintenance</option>
+              <option>Dépannage frigorifique</option>
+              <option>Froid domestique</option>
+              <option>Autre demande</option>
+            </select>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre besoin..." required></textarea>
+            <button class="btn" type="submit">Préparer l'email</button>
+            <p class="form-note">Ce formulaire ouvre votre application de messagerie. Il n'envoie pas les informations automatiquement.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>MON ENTREPRISE — Froid & Climatisation</strong>
+        <p>Installation • Entretien • Dépannage</p>
+      </div>
+      <div>
+        <p>Email : <a href="mailto:agbodamakourodolphe@gmail.com">agbodamakourodolphe@gmail.com</a></p>
+        <p>Téléphone : <a href="tel:+2290145782993">0145782993</a></p>
+      </div>
+      <p>© <span id="year">2026</span> Mon Entreprise. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Remplace 2290145782993 par ton numéro WhatsApp au format international, sans + ni espaces, si nécessaire. -->
+  <a class="whatsapp-float" href="https://wa.me/2290145782993" target="_blank" rel="noopener noreferrer" aria-label="Contacter par WhatsApp">WhatsApp ↗</a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const nom = document.getElementById("nom").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const service = document.getElementById("service").value;
+      const message = document.getElementById("message").value.trim();
+
+      const subject = encodeURIComponent("Demande de service : " + service);
+      const body = encodeURIComponent(
+        "Bonjour Mon Entreprise,\n\n" +
+        "Nom : " + nom + "\n" +
+        "Email : " + (email || "Non renseigné") + "\n" +
+        "Service souhaité : " + service + "\n\n" +
+        "Message :\n" + message + "\n\n" +
+        "Envoyé depuis le site Mon Entreprise."
+      );
+      window.location.href = "mailto:agbodamakourodolphe@gmail.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
